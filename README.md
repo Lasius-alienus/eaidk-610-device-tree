@@ -1,0 +1,1 @@
+# eaidk-610-device-tree
