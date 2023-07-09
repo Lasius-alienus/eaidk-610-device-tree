@@ -12,3 +12,9 @@
  1. 卡启适配较好，如要直接烧录到emmc，使用[烧写工具](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/tools/RKDevTool "烧写工具")，修改第二项为你使用的镜像即可。
  
 ### 但正如上文所述一个板卡有GPU支持（况且性能还不差），那就应该把GPU驱动起来。以下还有一些适配一般但驱动了GPU的镜像。
+##### [orangepi 4 lts](http://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-4-LTS.html "orangepi 4 lts")
+以下系统皆不能驱动usb3.0，mipi屏幕（至少不正常），type-c（未测试）
+- debian
+使用闭源驱动，支持硬解，对游戏优化较差（如MC），浏览器支持硬解视频，如果type-c能用，那也要求使用4.4内核的镜像。
+- ubuntu
+使用5.18的镜像使用了开源的panforst驱动，优化极佳，但貌似只支持kodi硬解。
