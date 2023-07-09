@@ -9,7 +9,7 @@
 
  ##### - ophub（[armbian](https://github.com/ophub/amlogic-s9xxx-armbian/releases "armbian")/[op](https://github.com/ophub/amlogic-s9xxx-openwrt/releases "op")）
  1. 目前暂不支持驱动GPU和mipi，其他功能正常
- 1. 卡启适配较好，如要直接烧录到emmc，使用[烧写工具](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/tools/RKDevTool "烧写工具")，修改第二项为你使用的镜像即可。
+ 1. 卡启适配较好，如要直接烧录到emmc，使用[烧写工具](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/tools/RKDevTool "烧写工具")，修改第二项为你使用的镜像即可，从sd卡写入emmc在root下执行`$ armbian-config`，然后按提示操作（有时候会报`Error: no u-boot package found, exiting`但我这边多试了几次莫名其妙就成功了，不作方法参考） 。
  
 ### 但正如上文所述一个板卡有GPU支持（况且性能还不差），那就应该把GPU驱动起来。以下还有一些适配一般但驱动了GPU的镜像。
 ##### [orangepi 4 lts](http://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-4-LTS.html "orangepi 4 lts")
@@ -17,4 +17,6 @@
 - debian
 使用闭源驱动，支持硬解，对游戏优化较差（如MC），浏览器支持硬解视频，如果type-c能用，那也要求使用4.4内核的镜像。
 - ubuntu
-使用5.18的镜像使用了开源的panforst驱动，优化极佳，但貌似只支持kodi硬解。
+使用5.18的镜像使用了开源的panforst驱动，优化极佳，但貌似只支持kodi硬解，直接刷入emmc不正常（ssh无法连接，无法创建用户/修改密码）！从sd卡写入emmc报错。
+
+# 不要按照orangepi官方文档的做法尝试驱动mipi屏幕，型号不同可能会导致屏幕烧毁！
