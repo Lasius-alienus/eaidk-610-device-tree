@@ -13,10 +13,14 @@
  
 ### 但正如上文所述一个板卡有GPU支持（况且性能还不差），那就应该把GPU驱动起来。以下还有一些适配一般但驱动了GPU的镜像。
 ##### [orangepi 4 lts](http://www.orangepi.cn/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-4-LTS.html "orangepi 4 lts")
-以下系统皆不能驱动usb3.0，mipi屏幕（至少不正常），type-c（未测试）
+以下系统皆不能驱动USB3.0，mipi屏幕（至少不正常），type-c（未测试）
 - debian
-使用闭源驱动，支持硬解，对游戏优化较差（如MC），浏览器支持硬解视频，如果type-c能用，那也要求使用4.4内核的镜像。
+使用闭源驱动，支持硬解，对游戏优化较差（如MC），浏览器支持硬解视频，如果type-c在特定系统下能用，那应当是使用4.4内核的系统。
 - ubuntu
-使用5.18的镜像使用了开源的panforst驱动，优化极佳，但貌似只支持kodi硬解，直接刷入emmc不正常（ssh无法连接，无法创建用户/修改密码）！从sd卡写入emmc报错。
+使用5.18内核的系统使用了开源的panforst驱动，优化极佳，但貌似只支持kodi硬解，直接刷入emmc不正常（ssh无法连接，无法创建用户/修改密码）！从sd卡写入emmc报错。
 
-# 不要按照orangepi官方文档的做法尝试驱动mipi屏幕，型号不同可能会导致屏幕烧毁！
+# 不要按照orangepi官方文档的做法尝试驱动mipi屏幕，型号不同可能会导致屏幕烧毁！！！
+
+# 反向适配的尝试
+
+为没有dtb支持的系统适配GPU驱动很难，即使解决了kernel部分的驱动userspace也很麻烦，但是为适配了GPU的系统适配mipi屏幕和USB3.0可能难度会相对较低
