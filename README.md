@@ -25,4 +25,9 @@
 
 为没有dtb支持的系统适配GPU驱动很难，即使解决了kernel部分的驱动userspace也很麻烦，但是为适配了GPU的系统适配mipi屏幕和USB3.0可能难度会相对较低
 
-所有目前已经获得的[dtb](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dtb "dtb")/[dts](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dts "dts")都分类放在了相应的文件夹中部分反编译的dts放在了[dts(DTC)](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dts(DTC) 文件夹中
+所有目前已经获得的[dtb](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dtb "dtb")/[dts](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dts "dts")都分类放在了相应的文件夹中部分反编译的dts放在了[dts(DTC)]((https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dts(DTC)文件夹中
+
+# 编译内核的说明
+由于获取了一部分的dts（不是反编译的，那个没法大改），也许可以尝试修改一部分dts然后放入官方提供的kernel源码（EAIDK不行，太老了）或[获取](https://www.kernel.org/ "获取")linux kernel（[更快的下载源](https://mirror.bjtu.edu.cn/kernel/linux/kernel/v6.x/ "更快的下载源")），最好使用6.x版本内核，新内核对mali和panforst适配应该较好，具体的适配在此不再赘述，一部分参考材料可在此处获取。
+- [在 RK3399 上运行开源的 Mali GPU 驱动](https://aijishu.com/a/1060000000082887 "在 RK3399 上运行开源的 Mali GPU 驱动")
+- [在 RK3399 上部署最新的 Linux 5.4 和 U-Boot v2020 .01](https://mp.weixin.qq.com/s/KZ1TflNpyWtZLMGcKtDyTQ "在 RK3399 上部署最新的 Linux 5.4 和 U-Boot v2020 .01")
