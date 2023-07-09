@@ -1,0 +1,35 @@
+/dts-v1/;
+
+/ {
+	compatible = "rockchip,rk3399";
+
+	fragment@0 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@1 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@2 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			compatible = "innolux,afj101-ba2131";
+		};
+	};
+
+	__fixups__ {
+		mipi_dsi = "/fragment@0:target:0";
+		gt9xx = "/fragment@1:target:0";
+		lcd_panel = "/fragment@2:target:0";
+	};
+};
