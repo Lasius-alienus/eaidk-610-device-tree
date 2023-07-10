@@ -1,0 +1,94 @@
+
+&hdmi {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	#sound-dai-cells = <0>;
+	ddc-i2c-scl-high-time-ns = <9625>;
+	ddc-i2c-scl-low-time-ns = <10000>;
+	status = "okay";
+        rockchip,phy-table =
+                <74250000  0x8009 0x0004 0x0272>,
+                <165000000 0x802b 0x0004 0x0209>,
+                <297000000 0x8039 0x0005 0x028d>,
+                <594000000 0x8039 0x0000 0x00f6>,
+                <000000000 0x0000 0x0000 0x0000>;
+};
+
+
+&display_subsystem {
+	status = "okay";
+	ports = <&vopb_out>, <&vopl_out>;
+	logo-memory-region = <&drm_logo>;
+
+	route {
+		route_hdmi: route-hdmi {
+			status = "okay";
+			logo,uboot = "logo.bmp";
+			logo,kernel = "logo_kernel.bmp";
+			logo,mode = "fullscreen";
+			charge_logo,mode = "center";
+			connect = <&vopb_out_hdmi>;
+		};
+
+		route_dsi: route-dsi {
+			status = "disabled";
+			logo,uboot = "logo.bmp";
+			logo,kernel = "logo_kernel.bmp";
+			logo,mode = "fullscreen";
+			charge_logo,mode = "center";
+			connect = <&vopl_out_dsi>;
+		};
+
+		route_dsi1: route-dsi1 {
+			status = "disabled";
+			logo,uboot = "logo.bmp";
+			logo,kernel = "logo_kernel.bmp";
+			logo,mode = "fullscreen";
+			charge_logo,mode = "center";
+			connect = <&vopl_out_dsi1>;
+		};
+
+		route_edp: route-edp {
+			status = "disabled";
+			logo,uboot = "logo.bmp";
+			logo,kernel = "logo_kernel.bmp";
+			logo,mode = "fullscreen";
+			charge_logo,mode = "center";
+			connect = <&vopb_out_edp>;
+		};
+	};
+};
+
+&route_hdmi {
+	status = "okay";
+};
+
+
+&vopb {
+        assigned-clocks = <&cru DCLK_VOP0_DIV>;
+        assigned-clock-parents = <&cru PLL_VPLL>;
+        status = "okay";
+};
+
+&vopb_mmu {
+        status = "okay";
+};
+
+&vopl {
+        assigned-clocks = <&cru DCLK_VOP1_DIV>;
+        assigned-clock-parents = <&cru PLL_CPLL>;
+        status = "okay";
+};
+
+&vopl_mmu {
+        status = "okay";
+};
+
+ 
+&hdmi_in_vopl { 
+        status = "disabled";
+}; 
+ 
+&hdmi_in_vopb { 
+        status = "okay"; 
+}; 

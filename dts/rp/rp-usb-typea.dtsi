@@ -1,0 +1,77 @@
+
+
+
+
+&cdn_dp {
+        status = "disabled";
+        phys = <&tcphy0_dp>;
+};
+
+&tcphy0 {
+        status = "okay";
+};
+
+&tcphy1 {
+        status = "okay";
+};
+
+&u2phy0 {
+        status = "okay";
+
+        u2phy0_otg: otg-port {
+                status = "okay";
+        };
+
+        u2phy0_host: host-port {
+                status = "okay";
+        };
+};
+
+&u2phy1 {
+        status = "okay";
+
+        u2phy1_otg: otg-port {
+                status = "okay";
+        };
+
+        u2phy1_host: host-port {
+                status = "okay";
+        };
+};
+
+
+&usbdrd3_0 {
+        status = "okay";
+};
+
+&usbdrd3_1 {
+        status = "okay";
+};
+
+&usbdrd_dwc3_0 {
+        status = "okay";
+	dr_mode = "device";                
+        usb3-power-gpio = <&gpio0 6 GPIO_ACTIVE_HIGH>;		//4 26
+};
+
+&usbdrd_dwc3_1 {
+        status = "okay";
+        dr_mode = "host";
+};
+
+&usb_host0_ehci {
+        status = "okay";
+};
+
+&usb_host0_ohci {
+        status = "okay";
+};
+
+&usb_host1_ehci {
+        status = "okay";
+};
+
+&usb_host1_ohci {
+        status = "okay";
+};
+

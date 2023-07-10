@@ -1,0 +1,126 @@
+#include "rk3399-sapphire-excavator-linux.dtsi"
+#include "rp-usb-typea.dtsi"
+
+/ {
+
+        model = "rpdzkj rd3399 linux";
+        compatible = "rockchip,rk3399-excavator-linux", "rockchip,rk3399";
+
+        rt5651-sound {
+                compatible = "simple-audio-card";
+                simple-audio-card,format = "i2s";
+                simple-audio-card,name = "realtek,rt5651-codec";
+                simple-audio-card,mclk-fs = <256>;
+                simple-audio-card,widgets =
+                        "Microphone", "Mic Jack",
+                        "Headphone", "Headphone Jack";
+                simple-audio-card,routing =
+                        "Mic Jack", "MICBIAS1",
+                        "IN1P", "Mic Jack",
+                        "Headphone Jack", "HPOL",
+                        "Headphone Jack", "HPOR";
+                simple-audio-card,cpu {
+                        sound-dai = <&i2s0>;
+                };
+                simple-audio-card,codec {
+                        sound-dai = <&rt5651>;
+                };
+        };
+
+        led-gpio {
+                compatible = "led-led";
+                breathe-led = <&gpio4 24 GPIO_ACTIVE_HIGH>;
+        };
+
+        rp_gpio{
+                status = "okay";
+                compatible = "rp_gpio";
+                base_value = <0>; //3288_5.1 = 0   3288_7.1.2 = 992  3288_ubuntu = 992   3399_7.1.2 = 1000 3399_ubuntu = 0  
+
+		gpio0 {
+                	gpio_num = <&gpio4 21 GPIO_ACTIVE_LOW>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+		gpio1 {
+                	gpio_num = <&gpio4 25 GPIO_ACTIVE_LOW>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+		gpio2 {
+                	gpio_num = <&gpio4 27 GPIO_ACTIVE_LOW>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+                fan_open {
+                        gpio_num = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+                hub_rst {
+                        gpio_num = <&gpio1 24 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+                5v_power_en {
+                        gpio_num = <&gpio4 30 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+                3v3_power_en {
+                        gpio_num = <&gpio4 22 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+	};
+
+};
+
+&i2c1 {
+        status = "okay";
+        i2c-scl-rising-time-ns = <300>;
+        i2c-scl-falling-time-ns = <15>;
+
+        rt5651: rt5651@1a {
+                #sound-dai-cells = <0>;
+                compatible = "realtek,rt5651";
+                reg = <0x1a>;
+                clocks = <&cru SCLK_I2S_8CH_OUT>;
+                clock-names = "mclk";
+                pinctrl-names = "default";
+                pinctrl-0 = <&i2s_8ch_mclk>;
+                spk-con-gpio = <&gpio0 11 GPIO_ACTIVE_HIGH>;
+                hp-det-gpio = <&gpio4 28 GPIO_ACTIVE_LOW>;
+        };
+
+};
+
+&hdmi_sound {
+	status = "disabled";
+};
+
+&spi1 {
+        status = "okay";
+        spi_wk2xxx: spi_wk2xxx@00{
+                status = "okay";
+                compatible = "spi-wk2xxx";
+                reg = <0>;
+                spi-max-frequency = <10000000>;
+                reset-gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+                irq-gpio = <&gpio0 8 IRQ_TYPE_EDGE_FALLING>;
+                cs-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+        };
+
+};
+&fiq_debugger {
+       rockchip,baudrate = <115200>;  /* Only 115200 and 1500000 */
+};
+
+&dfi {
+       status = "disabled";
+};
+ 
+&dmc {
+       status = "disabled";
+};
+
+
+
+

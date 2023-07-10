@@ -1,0 +1,35 @@
+
+
+&rp_gpio {
+
+                gpio10 {
+                        gpio_num = <&gpio4 3 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+                gpio11 {
+                        gpio_num = <&gpio4 4 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+                gpio12 {
+                        gpio_num = <&gpio4 5 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+                gpio13 {
+                        gpio_num = <&gpio4 6 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+
+                gpio14 {
+                        gpio_num = <&gpio4 7 GPIO_ACTIVE_HIGH>;
+                        gpio_function = <0>;            //0:output，1:input
+                };
+};
+
+
+&i2s1 {
+	status = "okay";
+};
+
