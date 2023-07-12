@@ -27,6 +27,8 @@
 
 所有目前已经获得的[dtb](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dtb "dtb")/[dts](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dts "dts")都分类放在了相应的文件夹中部分反编译的dts放在了[dts(DTC)]((https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/dts(DTC)文件夹中
 
+目前使用的armbian官方提供的dts，编译后得到的[dtb](https://github.com/Lasius-alienus/eaidk-610-device-tree/tree/main/support%20orangepi%204%20lts "dtb")配合orangpi 4 lts已经可以驱动这块板卡的大多数功能。不能驱动的有：type-c（未测试）可能不能正常运行。Bluetooth可以连接设备，但连接蓝牙音响无输出。dts中没有mipi的描述，因此适配困难。目前主要的问题是，开机时出现`A start job is running for Load Kernel Modules`,超时时间为90s，需要超时后才能启动系统。
+
 # 编译内核的说明
 由于获取了一部分的dts（不是反编译的，那个没法大改），也许可以尝试修改一部分dts然后放入官方提供的kernel源码（EAIDK不行，太老了）或[获取](https://www.kernel.org/ "获取")linux kernel（[更快的下载源](https://mirror.bjtu.edu.cn/kernel/linux/kernel/v6.x/ "更快的下载源")），编译得到内核文件和dtb。最好使用6.x版本内核，因为新内核对mali和panforst适配应该较好，具体的适配在此不再赘述，一部分参考材料可在此处获取。
 - [在 RK3399 上运行开源的 Mali GPU 驱动](https://aijishu.com/a/1060000000082887 "在 RK3399 上运行开源的 Mali GPU 驱动")
